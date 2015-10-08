@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <base href="/">
+    <!-- <base href="/"> -->
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="sosAppApp">
+  <body ><!-- ng-app="sosAppApp" -->
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -103,13 +103,22 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
     <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/services/authservice.js"></script>
         <!-- endbuild -->
+        <script src="mock/login.js"></script>
+        <script src="scripts/app-mock.js"></script>
 </body>
 </html>

@@ -60,7 +60,8 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.app %>/resources/{,*/}*.json'
         ]
       }
     },
@@ -86,6 +87,10 @@ module.exports = function (grunt) {
               connect().use(
                 '/app/styles',
                 connect.static('./app/styles')
+              ),
+              connect().use(
+                '/mock',
+                connect.static('./test/mock')
               ),
               connect.static(appConfig.app)
             ];
@@ -381,6 +386,22 @@ module.exports = function (grunt) {
       }
     },
 
+    processhtml: {
+      options: {
+        commentMarker: 'process'
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.dist %>',
+            src: ['*.html', 'views/{,*/}*.html'],
+            dest: '<%= yeoman.dist %>'
+          }
+        ]
+      }
+    },
+
     // ng-annotate tries to make the code safe for minification automatically
     // by using the Angular long form for dependency injection.
     ngAnnotate: {
@@ -414,7 +435,8 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'resources/{,*/}*.*'
           ]
         }, {
           expand: true,
@@ -426,6 +448,11 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/angular-i18n/',
+          src: '*.js',
+          dest: '<%= yeoman.dist %>/bower_components/angular-i18n'
         }]
       },
       styles: {
@@ -507,6 +534,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
+    'processhtml',
     'usemin',
     'htmlmin'
   ]);

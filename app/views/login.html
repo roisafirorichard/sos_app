@@ -1,20 +1,56 @@
-<div class="col-md-12 col-md-offset-6">
-    <h2>Login</h2>
-    <!-- <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div> -->
-    <form name="form" ng-submit="login(login.username, login.password)" role="form" method="post" method="post">
-        <div class="form-group" ng-class="">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="login.username" required />
-            <!-- <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span> -->
-        </div>
-        <div class="form-group" >
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="login.password" required />
-            <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span> -->
-        </div>
-        <div class="form-actions">
-            <button type="submit" ng-disabled="" class="btn btn-primary">Login</button>
-            <!-- <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
-        </div>
-    </form>
+<div ng-controller="LoginCtrl" class="row">
+    <div class="col-md-12 col-md-offset-6" ng-init="showUserPanel=false" >
+        <h2>Anmeldung</h2>
+        <div ng-show="error" class="alert alert-danger">{{errorMsg}}</div>
+        <form ng-submit="login(login.username, login.password)" role="form" method="post">
+            <div class="form-group" ng-class="">
+                <label for="username">Benutzer </label>
+                <input type="text" name="username" id="username" class="form-control" ng-model="login.username" required />
+                <!-- <span ng-show="login.username.$dirty && login.username.$error.required" class="help-block">Username is required</span> -->
+            </div>
+            <div class="form-group" >
+                <label for="password">Kennword </label>
+                <input type="password" name="password" id="password" class="form-control" ng-model="login.password" required />
+                <!-- <span ng-show="login.password.$dirty && login.password.$error.required" class="help-block">Password is required</span> -->
+            </div>
+            <div class="form-actions">
+                <div class="pull-left">
+                    <div ng-translate-language-select></div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="!login.password.length || !login.username.length">Anmelden</button>
+                <a class="btn btn-default pull-right" ng-click="showUserPanel=!showUserPanel">Kennwort ändern</a>
+                <img ng-if="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12 col-md-offset-6" ng-show="showUserPanel">
+        <h2>Passwort ändern</h2>
+        <div ng-show="error" class="alert alert-danger">{{uErrorMsg}}</div>
+        <form ng-submit="changePassword(cpass.username, cpass.oldpassword, cpass.newpassword)" role="form">
+            <div class="form-group" ng-class="">
+                <label for="username">Benuzer </label>
+                <input type="text" name="cusername" id="cusername" class="form-control" ng-model="cpass.username" required />
+                <!-- <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span> -->
+            </div>
+            <div class="form-group" >
+                <label for="password">altes Passwort</label>
+                <input type="password" name="oldpassword" id="oldpassword" class="form-control" ng-model="cpass.oldpassword" required />
+                <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span> -->
+            </div>
+            <div class="form-group" ng-class="{'has-error':cpass.newpassword!=cpass.cnewpassword}">
+                <label for="password">neues Passwort</label>
+                <input type="password" name="newpassword" id="newpassword" class="form-control" ng-model="cpass.newpassword" required />
+                <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span> -->
+            </div>
+            <div class="form-group" ng-class="{'has-error':cpass.newpassword!=cpass.cnewpassword}">
+                <label for="password">neues Passwort</label>
+                <input type="password" name="cnewpassword" id="cnewpassword" class="form-control" ng-model="cpass.cnewpassword" required />
+                <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span> -->
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="!cpass.cnewpassword.length || !cpass.oldpassword.length || !cpass.newpassword.length || cpass.newpassword!=cpass.cnewpassword">Bestätigen</button>
+                <img ng-if="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+        </form>
+    </div>
 </div>

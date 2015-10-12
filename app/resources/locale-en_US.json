@@ -1,7 +1,0 @@
-{
-    "views.main.Kundendaten": "Kundendaten",
-    "views.main.Lieferadressen": "Lieferadressen",
-    "views.main.Bankverbindung": "Bankverbindung",
-    "views.main.Auftragshistorie": "Auftragshistorie",
-    "directives.language-select.Language": "Language"
-}

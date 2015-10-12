@@ -88,10 +88,6 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect().use(
-                '/mock',
-                connect.static('./test/mock')
-              ),
               connect.static(appConfig.app)
             ];
           }
@@ -386,22 +382,6 @@ module.exports = function (grunt) {
       }
     },
 
-    processhtml: {
-      options: {
-        commentMarker: 'process'
-      },
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= yeoman.dist %>',
-            src: ['*.html', 'views/{,*/}*.html'],
-            dest: '<%= yeoman.dist %>'
-          }
-        ]
-      }
-    },
-
     // ng-annotate tries to make the code safe for minification automatically
     // by using the Angular long form for dependency injection.
     ngAnnotate: {
@@ -534,7 +514,6 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'processhtml',
     'usemin',
     'htmlmin'
   ]);

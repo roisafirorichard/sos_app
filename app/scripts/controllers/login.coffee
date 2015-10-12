@@ -8,14 +8,29 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'LoginCtrl', ($scope, authService, $location) ->
+  .controller 'LoginCtrl', ($scope, authService, $location, config) ->
 	
-	# $scope.username = ''
-	# $scope.password = ''
-
+	$scope.error = false
+	$scope.errorMsg = ''
+	$scope.loading = false
 	$scope.login = (username, password) ->
-		authService.login().then (d) ->
-			console.log "this is the resp: "+d
-			$scope.data = d
-			$location.path("/home");
+		$scope.loading = true
+		authService.login(username, password).then (d) ->
+			if d.data == true
+				$location.path 'home'
+			else
+				$scope.error = true
+				$scope.errorMsg = 'Error'
+			$scope.loading = false
 			return
+		return
+
+	$scope.changePassword = (username, oldpassword, newpassword) ->
+		$scope.loading = true
+		authService.changePassword(username, oldpassword, newpassword).then (d) ->
+			console.log 'this is the resp: ' + d
+			return
+		return
+
+	return
+			

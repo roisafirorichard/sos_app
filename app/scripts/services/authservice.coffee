@@ -8,12 +8,33 @@
  # Service in the sosAppApp.
 ###
 angular.module 'sosAppApp'
-  .factory 'authService', ($http)->
-
+  .factory 'authService', ($http, $translate, config)->
+	locale = $translate.use()
+	
 	authService = 
-		login: ->
-			promise = $http.get('/api/login').then((response) ->
-				console.log response
+		login: (username, password)->
+			data =
+				'username': username
+				'password': password
+
+			headers = 
+				'systemId': config.systemId
+				'userId': config.userId
+			promise = $http.post(config.apiUrl + '/SOS-1/1/'+locale+'/agentlogin', data, {headers: headers}).then((response) ->
+				response.data
+			)
+			# Return the promise to the controller
+			promise
+			
+		changePassword: (username, oldpassword, newpassword)->
+			data =
+				'oldPassword': oldpassword
+				'newPassword': newpassword
+
+			headers = 
+				'systemId': config.systemId
+				'userId': config.userId
+			promise = $http.put(config.apiUrl + '/SOS-1/1/'+locale+'/agentlogin/'+username, data, {headers: headers}).then((response) ->
 				response.data
 			)
 			# Return the promise to the controller

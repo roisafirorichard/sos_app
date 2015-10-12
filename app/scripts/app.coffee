@@ -1,18 +1,6 @@
 'use strict'
 
 ###*
- # @ngdoc bootstrap
- # @name mockedBackendWithAngularjsApp
- #
-###
-do ->
-  if !angular.mock
-    angular.element(document).ready ->
-      angular.bootstrap document, [ 'sosAppApp' ]
-      return
-  return
-
-###*
  # @ngdoc overview
  # @name sosAppApp
  # @description
@@ -34,7 +22,7 @@ angular
     'pascalprecht.translate',
     'tmh.dynamicLocale'
   ]
-  .config ($routeProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider) ->
+  .config ($routeProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, $httpProvider) ->
     $routeProvider
       .when '/home',
         templateUrl: 'views/main.html'
@@ -47,19 +35,29 @@ angular
       .otherwise
         redirectTo: '/login'
 
+    #$httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
     # $locationProvider.html5Mode true
     $translateProvider.useMissingTranslationHandlerLog()
 
     $translateProvider.useStaticFilesLoader
       prefix: 'resources/locale-'
       suffix: '.json'
-    $translateProvider.preferredLanguage 'en_US'
+    $translateProvider.preferredLanguage 'de_DE'
     # is applied on first load
     $translateProvider.useLocalStorage()
     # saves selected language to localStorage
     tmhDynamicLocaleProvider.localeLocationPattern 'bower_components/angular-i18n/angular-locale_{{locale}}.js'
+  
   .constant 'LOCALES',
     'locales':
-      'ru_RU': 'Русский'
-      'en_US': 'English'
-    'preferredLocale': 'en_US'
+      'de_DE': 'Deutschland'
+      'ch_CH': 'Schweiz'
+      'at_AT': 'Österreich'
+    'preferredLocale': 'de_DE'
+  .constant 'config',
+    'appName': 'HSEsos'
+    'appVersion': '0.1'
+    'apiUrl': 'http://10.197.76.45:80'
+    'systemId': 'sosclient'
+    'userId': 'sosuser'
+

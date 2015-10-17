@@ -20,7 +20,9 @@ angular
     'ui.grid', 
     'ui.grid.edit',
     'pascalprecht.translate',
-    'tmh.dynamicLocale'
+    'tmh.dynamicLocale',
+    'angularModalService',
+    'ipCookie'
   ]
   .config ($routeProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, $httpProvider) ->
     $routeProvider

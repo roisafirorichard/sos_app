@@ -8,7 +8,31 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'MainCtrl', ($scope) ->
+  .controller 'MainCtrl', ($scope, CustomerService, ModalService) ->
+	$scope.Custemersearch = {}
+	$scope.Custemersearch.findCustomerById = (Id) ->
+		if !Id
+			$scope.Custemersearch.findCustomerModal()
+		else 
+			CustomerService.getCustomerById(Id).then (d) ->
+				if d.message.messageType == "NONE"
+					$scope.Custemersearch.data = d.data
+				else
+
+		return
+	$scope.Custemersearch.findCustomerModal = ->
+		ModalService.showModal(
+			templateUrl: 'templates/modals/CustomerSearch.html'
+			controller: ->
+				@info = "something"
+			controllerAs: 'infoModal').then (modal) ->
+			modal.element.modal()
+			modal.close.then (result) ->
+				$scope.message = if result then 'You said Yes' else 'You said No'
+				return
+			return
+		return
+
 	$('#myTabs a').click (e) ->
 		e.preventDefault()
 		$(this).tab 'show'

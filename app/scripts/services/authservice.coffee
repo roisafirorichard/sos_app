@@ -8,7 +8,7 @@
  # Service in the sosAppApp.
 ###
 angular.module 'sosAppApp'
-  .factory 'authService', ($http, $translate, config)->
+  .factory 'authService', ($http, $location, $translate, ipCookie, config)->
 	locale = $translate.use()
 	
 	authService = 
@@ -39,6 +39,17 @@ angular.module 'sosAppApp'
 			)
 			# Return the promise to the controller
 			promise
+
+		extandLoginSession: (username) ->
+			loginInfos =
+				'username': username
+				'locale': locale
+			if !ipCookie('logininfos')
+				ipCookie 'logininfos', loginInfos, 
+					expires: 2
+					expirationUnit: 'hours'
+			else
+				$location.path 'login'
 	authService
 
 	# AngularJS will instantiate a singleton by calling "new" on this function

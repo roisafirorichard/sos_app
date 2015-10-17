@@ -8,10 +8,7 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'LoginCtrl', ($scope, authService, $location, config) ->
-	
-	$scope.error = false
-	$scope.errorMsg = ''
+  .controller 'LoginCtrl', ($scope, authService, $location, config, ModalService) ->
 	$scope.loading = false
 	$scope.login = (username, password) ->
 		$scope.loading = true
@@ -19,18 +16,30 @@ angular.module 'sosAppApp'
 			if d.data == true
 				$location.path 'home'
 			else
-				$scope.error = true
-				$scope.errorMsg = 'Error'
+				ModalService.showModal(
+					templateUrl: 'templates/modals/info.html'
+					controller: ->
+						console.log "I'm in"
+						@info = d.message.desc
+					controllerAs: 'infoModal').then (modal) ->
+					modal.element.modal()
+					modal.close.then (result) ->
+						$scope.message = if result then 'You said Yes' else 'You said No'
+						return
+					return
 			$scope.loading = false
 			return
+		authService.extandLoginSession(username)
 		return
 
-	$scope.changePassword = (username, oldpassword, newpassword) ->
-		$scope.loading = true
-		authService.changePassword(username, oldpassword, newpassword).then (d) ->
-			console.log 'this is the resp: ' + d
+	$scope.changePasswordModal = ->
+		ModalService.showModal(
+			templateUrl: 'templates/modals/changePassword.html'
+			controller : "Changepasswordcontroller").then (modal) ->
+			modal.element.modal()
+			modal.close.then (result) ->
+				$scope.message = if result then 'You said Yes' else 'You said No'
+				return
 			return
-		return
-
 	return
 			

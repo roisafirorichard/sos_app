@@ -17,11 +17,11 @@
     "angular-translate-storage-local": "~2.8.1",
     "angular-translate-handler-log": "~2.8.1",
     "angular-dynamic-locale": "~0.1.27",
-    "angular-i18n": "~1.4.7"
+    "angular-i18n": "~1.4.7",
+    "angular-modal-service": "~0.6.9",
+    "angular-cookie": "~4.0.9"
   },
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "appPath": "app",
   "moduleName": "sosAppApp",
   "overrides": {

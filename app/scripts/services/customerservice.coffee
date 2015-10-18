@@ -28,18 +28,18 @@ angular.module 'sosAppApp'
 		advancedCustomerSearch: (array) ->
 			data = 
 				"displayId" : null
-				"firstname" : array.voname
+				"firstname" : array.vorname
 				"lastname" : array.name
-				"street" : null
+				"street" : array.strase
 				"houseNumber" : null
 				"houseAffixNumber" : null
 				"zip" : null
 				"city" : null
 				"birthday" : null
-				"email" : null
-				"privateAreaCode" : null
-				"privateNumber" : null
-				"countryId" : null
+				"email" : array.email
+				"privateAreaCode" : array.telefonprvAreaCode
+				"privateNumber" : array.telefonprv
+				"countryId" : array.land
 				"salutationId" : null
 				"titleId" : null
 

@@ -85,7 +85,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default" ng-click="close(false)" data-dismiss="modal">Abbrechen</button>
-				<button type="submit" class="btn btn-primary pull-right" ng-disabled="!ks.vorname || !ks.name">übernehmen</button>
+				<button class="btn btn-primary pull-right" ng-click="searchCustomers.selectCustomer()" ng-disabled="!searchCustomers.selectedCustomer">übernehmen</button>
 			</div>
 			
 		</div>

@@ -8,7 +8,7 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'MainCtrl', ($scope, CustomerService, ModalService) ->
+  .controller 'MainCtrl', ($scope, $rootScope,CustomerService, ModalService) ->
 	$scope.Custemersearch = {}
 	$scope.Custemersearch.findCustomerById = (Id) ->
 		if !Id
@@ -18,15 +18,9 @@ angular.module 'sosAppApp'
 				if d.message.messageType == "NONE"
 					$scope.Custemersearch.data = d.data
 				else
-					ModalService.showModal(
-						templateUrl: 'templates/modals/info.html'
-						controller: ->
-							@info = d.message.desc
-							return
-						controllerAs: 'infoModal').then (modal) ->
-						modal.element.modal()
-						return
+					$rootScope.$broadcast 'alertError', d.message
 		return
+
 	$scope.Custemersearch.findCustomerModal = ->
 		ModalService.showModal(
 			templateUrl: 'templates/modals/CustomerSearch.html'
@@ -46,6 +40,32 @@ angular.module 'sosAppApp'
 				array: ks).then (modal) ->
 			modal.element.modal()
 			return
+		return
+
+	$scope.alertError = (message) ->
+		ModalService.showModal(
+			templateUrl: 'templates/modals/info.html'
+			controller: ->
+				@title = message.msg
+				@desc = message.desc
+				return
+			controllerAs: 'infoModal').then (modal) ->
+			modal.element.modal()
+			return
+	#all events goes here
+	$rootScope.$on 'creatNewCustomer', (event, data) ->
+		#console.log data
+		$scope.Custemersearch.creatNewCustomer data
+		return
+
+	$rootScope.$on 'selectCustomer', (event, data) ->
+		console.log data
+		$scope.Custemersearch.data = data
+		return
+
+	$rootScope.$on 'alertError', (event, data) ->
+		#console.log data
+		$scope.alertError data
 		return
 
 	$('#myTabs a').click (e) ->

@@ -8,7 +8,7 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'CustomeraddnewCtrl', ($scope, CustomerService, ModalService, selects, array)->
+  .controller 'CustomeraddnewCtrl', ($scope, CustomerService, selects, array)->
 	$scope.customers = {}
 	$scope.customers.loading = false
 	$scope.selects = selects
@@ -55,14 +55,7 @@ angular.module 'sosAppApp'
 		CustomerService.addNewCustomer(ds).then (d) ->
 			console.log 'this is the resp: ' + d
 			if d.message.messageType == 'ERROR'
-				ModalService.showModal(
-					templateUrl: 'templates/modals/info.html'
-					controller: ->
-						@info = d.message.desc
-						return
-					controllerAs: 'infoModal').then (modal) ->
-					modal.element.modal()
-					return
+				$rootScope.$broadcast 'alertError', d.message
 					
 				$scope.customers.loading = false
 			else

@@ -8,7 +8,7 @@
  # Controller of the sosAppApp
 ###
 angular.module 'sosAppApp'
-  .controller 'AdvancedcustomersearchCtrl', ($scope, CustomerService, ModalService, selects, $timeout)->
+  .controller 'AdvancedcustomersearchCtrl', ($scope, $rootScope, CustomerService, selects, $timeout,$element,close)->
 	$scope.searchCustomers = {}
 	$scope.searchCustomers.loading = false
 	$scope.selects = selects
@@ -25,11 +25,13 @@ angular.module 'sosAppApp'
 		return
 
 	$scope.gridOptions =
-		enableRowSelection: true,
-		enableSelectAll: true,
-		enableFullRowSelection: true,
-		selectionRowHeaderWidth: 35,
-		rowHeight: 35,
+		enableRowSelection: true
+		enableSelectAll: false
+		enableFullRowSelection: true
+		selectionRowHeaderWidth: 35
+		noUnselect: true
+		rowHeight: 35
+		multiSelect: false
 		showGridFooter:true
 		columnDefs: [
 			{
@@ -62,14 +64,7 @@ angular.module 'sosAppApp'
 		CustomerService.advancedCustomerSearch(array).then (d) ->
 			console.log 'this is the resp: ', d
 			if d.message.messageType == 'ERROR'
-				ModalService.showModal(
-					templateUrl: 'templates/modals/info.html'
-					controller: ->
-						@info = d.message.desc
-						return
-					controllerAs: 'infoModal').then (modal) ->
-					modal.element.modal()
-					return
+				$rootScope.$broadcast 'alertError', d.message
 					
 				$scope.searchCustomers.loading = false
 			else
@@ -85,28 +80,25 @@ angular.module 'sosAppApp'
 			return
 		return
 	$scope.searchCustomers.creatNewCustomer = (ks) ->
-		ModalService.showModal(
-			templateUrl: 'templates/modals/CustomerAddNew.html'
-			controller: 'CustomeraddnewCtrl'
-			inputs:
-				array: ks).then (modal) ->
-			modal.element.modal()
-			modal.close.then (result) ->
-				$scope.message = if result then 'You said Yes' else 'You said No'
-				return
-			return
+		$rootScope.$broadcast 'creatNewCustomer', ks
 		return
 
 	$scope.gridOptions.onRegisterApi = (gridApi) ->
 		#set gridApi on scope
 		$scope.gridApi = gridApi
 		gridApi.selection.on.rowSelectionChanged $scope, (row) ->
-			msg = 'row selected ' + row.isSelected
-			console.log msg
+			msg = 'row selected and has: ' 
+			console.log msg, row.entity
+			$scope.searchCustomers.selectedCustomer = row.entity
 			return
 		gridApi.selection.on.rowSelectionChangedBatch $scope, (rows) ->
 			msg = 'rows changed ' + rows.length
 			console.log msg
 			return
+		return
+	$scope.searchCustomers.selectCustomer = () ->
+		$rootScope.$broadcast 'selectCustomer', $scope.searchCustomers.selectedCustomer
+		$element.modal 'hide'
+		close null, 500
 		return
 	$scope.reset()

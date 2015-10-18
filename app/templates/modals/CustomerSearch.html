@@ -5,88 +5,89 @@
 				<button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
 				 <h4 class="modal-title">Kunden suchen</h4>
 			</div>
-			<form ng-submit='' class="form-horizontal">
+			
 			<div class="modal-body">
-				<div class="form-group">
-					<label for="kdnr" class="col-sm-4 control-label">KDNR*</label>
-					<div class="col-sm-18">
-						<input type="text" name="kdnr" id="kdnr" class="form-control input-sm" ng-model="ks.kdnr" required/>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="kdnr" class="col-sm-4 control-label">KDNR*</label>
+						<div class="col-sm-18">
+							<input type="text" name="kdnr" id="kdnr" class="form-control input-sm" ng-model="ks.kdnr" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">vomame*/Name*</label>
-					<div class="col-sm-9">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
+					<div class="form-group">
+						<label for="vorname" class="col-sm-4 control-label">vorname*/Name*</label>
+						<div class="col-sm-9">
+							<input type="text" name="vorname" id="vorname" class="form-control input-sm" ng-model="ks.vorname" />
+						</div>
+						<div class="col-sm-9">
+							<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" />
+						</div>
 					</div>
-					<div class="col-sm-9">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
-					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">Strase*/HNrjZS</label>
-					<div class="col-sm-9">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
+					<div class="form-group">
+						<label for="strase" class="col-sm-4 control-label">Strase*/HNr/ZS</label>
+						<div class="col-sm-9">
+							<input type="text" name="strase" id="strase" class="form-control input-sm" ng-model="ks.strase" />
+						</div>
+						<div class="col-sm-5">
+							<input type="text" name="hnr" id="hnr" class="form-control input-sm" ng-model="ks.hnr"/>
+						</div>
+						<div class="col-sm-4">
+							<input type="text" name="ZS" id="ZS" class="form-control input-sm" ng-model="ks.ZS"/>
+						</div>
 					</div>
-					<div class="col-sm-5">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
+					<div class="form-group">
+						<label for="land" class="col-sm-4 control-label">Land</label>
+						<div class="col-sm-9">
+							<select ng-model="ks.land" name="land" id="land" class="form-control" ng-options="option.name for option in selects.countries track by option.id">
+							</select>
+						</div>
 					</div>
-					<div class="col-sm-4">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
+					<div class="form-group">
+						<label for="plz" class="col-sm-4 control-label">Poslteitzahl/Ort*</label>
+						<div class="col-sm-4">
+							<input type="text" name="plz" id="plz" class="form-control input-sm" ng-model="ks.plz" />
+						</div>
+						<div class="col-sm-14">
+							<input type="text" name="ort" id="ort" class="form-control input-sm" ng-model="ks.ort" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">Land</label>
-					<div class="col-sm-9">
-						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+					<div class="form-group">
+						<label for="telefonprvAreaCode" class="col-sm-4 control-label">Telefon*</label>
+						<div class="col-sm-4">
+							<input type="text" name="telefonprvAreaCode" id="telefonprvAreaCode" class="form-control input-sm" ng-model="ks.telefonprvAreaCode" />
+						</div>
+						<div class="col-sm-14">
+							<input type="text" name="telefonprv" id="telefonprv" class="form-control input-sm" ng-model="ks.telefonprv" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">Poslteitzahl/Ort*</label>
-					<div class="col-sm-4">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
+					<div class="form-group">
+						<label for="DateOfBirth" class="col-sm-4 control-label">Gebursdatum</label>
+						<div class="col-sm-9">
+							<input ui-date="dateOptions" name="DateOfBirth" ng-model="ks.dateofbirth" ui-date-format="yy-mm-dd">
+						</div>
 					</div>
-					<div class="col-sm-14">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
+					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label">E-mail</label>
+						<div class="col-sm-9">
+							<input type="email" name="email" id="email" class="form-control input-sm" ng-model="ks.email"/>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">Telefon*</label>
-					<div class="col-sm-4">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
+					<div class="form-actions">
+						<button class="btn btn-default pull-left" ng-click="reset()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Zurucksetzen</button>
+						<button class="btn btn-default pull-left" ng-disabled="!ks.vorname || !ks.name" ng-click="searchCustomers.search(ks)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Suchen</button>
+						
+						<button class="btn btn-primary pull-right" ng-click="searchCustomers.creatNewCustomer(ks)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Kunde Anlegen</button>
+						<div class="clearfix"></div>
 					</div>
-					<div class="col-sm-14">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">Gebursdatum</label>
-					<div class="col-sm-9">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="voname" class="col-sm-4 control-label">E-mail</label>
-					<div class="col-sm-9">
-						<input type="text" name="voname" id="voname" class="form-control input-sm" ng-model="ks.voname" required/>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" name="name" id="name" class="form-control input-sm" ng-model="ks.name" required/>
-					</div>
-				</div>
+					<div id="grid" ui-grid="gridOptions" ui-grid-selection class="gridCustomers"></div>
+				</form>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" ng-click="close(false)" data-dismiss="modal">Abbrchen</button>
-				<button type="submit"  class="btn btn-primary pull-right" >übernehmen</button>
+				<button class="btn btn-default" ng-click="close(false)" data-dismiss="modal">Abbrechen</button>
+				<button type="submit" class="btn btn-primary pull-right" ng-disabled="!ks.vorname || !ks.name">übernehmen</button>
 			</div>
-			</form>
+			
 		</div>
 	</div>
 </div>

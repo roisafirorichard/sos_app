@@ -18,18 +18,33 @@ angular.module 'sosAppApp'
 				if d.message.messageType == "NONE"
 					$scope.Custemersearch.data = d.data
 				else
-
+					ModalService.showModal(
+						templateUrl: 'templates/modals/info.html'
+						controller: ->
+							@info = d.message.desc
+							return
+						controllerAs: 'infoModal').then (modal) ->
+						modal.element.modal()
+						return
 		return
 	$scope.Custemersearch.findCustomerModal = ->
 		ModalService.showModal(
 			templateUrl: 'templates/modals/CustomerSearch.html'
-			controller: ->
-				@info = "something"
-			controllerAs: 'infoModal').then (modal) ->
+			controller: 'AdvancedcustomersearchCtrl').then (modal) ->
 			modal.element.modal()
 			modal.close.then (result) ->
 				$scope.message = if result then 'You said Yes' else 'You said No'
 				return
+			return
+		return
+
+	$scope.Custemersearch.creatNewCustomer = (ks)->
+		ModalService.showModal(
+			templateUrl: 'templates/modals/CustomerAddNew.html'
+			controller: 'CustomeraddnewCtrl'
+			inputs:
+				array: ks).then (modal) ->
+			modal.element.modal()
 			return
 		return
 
@@ -41,6 +56,7 @@ angular.module 'sosAppApp'
 	$('.left-colmn, .right-clmn').height $(window).height() - 90
 	
 	$scope.gridOptions =
+		modifierKeysToMultiSelectCells: true
 		enableSorting: true
 		columnDefs: [
 			{

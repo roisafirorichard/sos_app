@@ -19,10 +19,13 @@ angular
     'cfp.hotkeys',
     'ui.grid', 
     'ui.grid.edit',
+    'ui.grid.cellNav',
+    'ui.grid.selection',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     'angularModalService',
-    'ipCookie'
+    'ipCookie',
+    'ui.date'
   ]
   .config ($routeProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, $httpProvider) ->
     $routeProvider
@@ -62,4 +65,88 @@ angular
     'apiUrl': 'http://10.197.76.45:80'
     'systemId': 'sosclient'
     'userId': 'sosuser'
-
+  .constant 'selects',
+    'countries': [
+      {
+      id : 0
+      name : 'Deutschland'
+      }
+      {
+      id : 1
+      name : 'Schweiz'
+      }
+      {
+      id : 2
+      name : 'Österreich'
+      }
+    ]
+    'salutationId':[
+      {
+      id : 0
+      name : '----'
+      }
+      {
+      id : 1
+      name : 'Frau'
+      }
+      {
+      id : 2
+      name : 'Herr'
+      }]
+    'titleId': [
+      {
+      id : 0
+      name : '----'
+      }
+      {
+      id : 1
+      name : 'Dr.'
+      }
+      {
+      id : 2
+      name : 'Ing.'
+      }
+      {
+      id : 3
+      name : 'Prof.'
+      }]
+    'phoneContactId':[
+      {
+      id : 0
+      name : '----'
+      }
+      {
+      id : 1
+      name : 'nein'
+      }
+      {
+      id : 2
+      name : 'ja'
+      }]
+    'paymentId': [
+      {
+      id : 0
+      name : '----'
+      }
+      {
+      id : 1
+      name : 'nein'
+      }
+      {
+      id : 2
+      name : 'ja'
+      }]
+    'sendPromotesFlg': [
+      {
+      id : 0
+      name : '----'
+      }
+      {
+      id : 1
+      name : 'nein'
+      }
+      {
+      id : 2
+      name : 'ja'
+      }]
+      

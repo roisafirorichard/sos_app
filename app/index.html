@@ -11,11 +11,13 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.min.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-datepicker/dist/angular-datepicker.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css"/>
   </head>
   <body ng-app="sosAppApp"><!-- ng-app="sosAppApp" -->
     <!--[if lte IE 8]>
@@ -81,6 +83,10 @@
     <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
     <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-date/src/date.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
@@ -93,6 +99,8 @@
         <script src="scripts/directives/languageselectdirective.js"></script>
         <script src="scripts/controllers/changepasswordcontroller.js"></script>
         <script src="scripts/services/customerservice.js"></script>
+        <script src="scripts/controllers/advancedcustomersearch.js"></script>
+        <script src="scripts/controllers/customeraddnew.js"></script>
         <!-- endbuild -->
 </body>
 </html>

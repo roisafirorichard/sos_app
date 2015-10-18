@@ -36,6 +36,10 @@ module.exports = (config) ->
       'bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js'
       'bower_components/angular-modal-service/dst/angular-modal-service.js'
       'bower_components/angular-cookie/angular-cookie.js'
+      'bower_components/lodash/lodash.js'
+      'bower_components/angular-datepicker/dist/angular-datepicker.js'
+      'bower_components/jquery-ui/jquery-ui.js'
+      'bower_components/angular-ui-date/src/date.js'
       # endbower
       # bower:coffee
       # endbower

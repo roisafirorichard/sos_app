@@ -124,10 +124,13 @@
             <label for="kundennummer-field" class="control-label">Kundennummer</label>
             <input type="text" class="form-control input-sm" id="kundennummer-field" ng-model="customer.Id"/>
           </div>
-          <button type="submit" class="btn btn-default btn-sm">
+          <button type="submit" class="btn btn-default btn-sm" ng-hide="Custemersearch.data">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Kunde suchen
           </button>
-          <button type="button" class="btn btn-default btn-sm">
+          <button class="btn btn-default btn-sm" ng-show="Custemersearch.data" >
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Zuruckserzen
+          </button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="Custemersearch.creatNewCustomer(array={})">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kunde anlegen
           </button>
           <button type="button" class="btn btn-default btn-sm  pull-right disabled">

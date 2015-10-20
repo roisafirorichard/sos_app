@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.bootstrap',
     'cfp.hotkeys',
     'ui.grid', 
     'ui.grid.edit',

@@ -40,6 +40,7 @@ module.exports = (config) ->
       'bower_components/angular-datepicker/dist/angular-datepicker.js'
       'bower_components/jquery-ui/jquery-ui.js'
       'bower_components/angular-ui-date/src/date.js'
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
       # endbower
       # bower:coffee
       # endbower

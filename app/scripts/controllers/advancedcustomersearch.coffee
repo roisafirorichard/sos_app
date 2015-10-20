@@ -33,6 +33,15 @@ angular.module 'sosAppApp'
 		rowHeight: 35
 		multiSelect: false
 		showGridFooter:true
+		appScopeProvider: onDblClick: (row) ->
+			console.log "row data: ", row.entity
+			$scope.searchCustomers.selectedCustomer = row.entity
+			$scope.searchCustomers.selectCustomer()
+			#close modal
+			$element.modal 'hide'
+			close null, 500
+			return
+		rowTemplate: '<div ng-dblclick="grid.appScope.onDblClick(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }" ui-grid-cell ></div>'
 		columnDefs: [
 			{
 				name: 'id'

@@ -21,7 +21,8 @@
     "angular-modal-service": "~0.6.9",
     "angular-cookie": "~4.0.9",
     "angular-datepicker": "~1.0.20",
-    "angular-ui-date": "~0.0.8"
+    "angular-ui-date": "~0.0.8",
+    "angular-bootstrap": "~0.14.2"
   },
   "devDependencies": {},
   "appPath": "app",

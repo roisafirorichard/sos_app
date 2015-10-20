@@ -33,9 +33,87 @@
 <div class="col-md-16 left-colmn">
   <div class="left-top-area">
     <div class="panel panel-default">
-      <div class="panel-heading">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+      <div class="panel-body">
+        <uib-tabset class="tabs-left">
+          <uib-tab heading="{{'views.main.Kundendaten' | translate}}">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label" ng-disabled="true">KDNR</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control input-sm" id="input1" placeholder="KDNR" ng-model="Custemersearch.data.displayId" ng-disabled="true">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="input2" ng-disabled="true">
+                </div>
+                <label class="col-sm-4 control-label">Bev.Zahlungsart</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control input-sm" id="input3" ng-disabled="true" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control input-sm" id="input4" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.street">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control input-sm" id="input5" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.houseNumber">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control input-sm" id="input6" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.houseNumberAffix">
+                </div>
+                <label class="col-sm-4 control-label">Mahnstufe</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control input-sm" id="input7" ng-disabled="true">
+                </div>
+                <label class="col-sm-3 control-label">TZ Mahnstufe</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control input-sm" id="input8" ng-disabled="true">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <input type="text" class="form-control input-sm" id="input9" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.zip">
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control input-sm" id="input10" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.city">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="input11" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.land">
+                </div>
+                <label class="col-sm-4 control-label">Auftragsbescgrakung</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control input-sm" id="input12" ng-disabled="true">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control input-sm" id="input13" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.email">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="input14" ng-disabled="true" ng-model="Custemersearch.data.birthday">
+                </div>
+                <label class="col-sm-4 control-label">Mitarbeiterkenzeichen</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control input-sm" id="input15" ng-disabled="true">
+                </div>
+              </div>
+
+            </form>
+          </uib-tab>
+          <uib-tab heading="{{'views.main.Lieferadressen' | translate}}" select="view.tabShown = !view.tabShown" deselect="view.tabShown = !view.tabShown" ng-disabled="true">
+            <div id="myGrid" ui-grid="gridOptionsAdr" ui-grid-selection class="gridTable" ng-if="view.tabShown" style="height:135px;"></div>
+          </uib-tab>
+          <uib-tab heading="{{'views.main.Bankverbindung' | translate}}">
+            Tab 3
+          </uib-tab>
+          <uib-tab heading="{{'views.main.Auftragshistorie' | translate}}">
+            Tab 4
+          </uib-tab>
+        </uib-tabset>
+        <!--<ul class="nav nav-tabs" role="tablist" id="myTabs">
           <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">{{"views.main.Kundendaten" | translate}}</a></li>
           <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">{{"views.main.Lieferadressen" | translate}}</a></li>
           <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">{{"views.main.Bankverbindung" | translate}}</a></li>
@@ -43,79 +121,81 @@
         </ul>
       </div>
       <div class="panel-body">
-            <!-- Tab panes -->
         <div class="tab-content main-tab-content">
           <div role="tabpanel" class="tab-pane active" id="tab1">
             <form class="form-horizontal">
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">KDNR</label>
+                <label for="inputEmail3" class="col-sm-2 control-label" ng-disabled="true">KDNR</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control input-sm" id="input1" placeholder="KDNR" ng-value="Custemersearch.data.firstname">
+                  <input type="text" class="form-control input-sm" id="input1" placeholder="KDNR" ng-model="Custemersearch.data.displayId" ng-disabled="true">
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control input-sm" id="input2">
+                  <input type="text" class="form-control input-sm" id="input2" ng-disabled="true">
                 </div>
                 <label class="col-sm-4 control-label">Bev.Zahlungsart</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control input-sm" id="input3">
+                  <input type="text" class="form-control input-sm" id="input3" ng-disabled="true" >
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-sm-8">
-                  <input type="text" class="form-control input-sm" id="input4">
+                  <input type="text" class="form-control input-sm" id="input4" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.street">
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control input-sm" id="input5">
+                  <input type="text" class="form-control input-sm" id="input5" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.houseNumber">
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control input-sm" id="input6">
+                  <input type="text" class="form-control input-sm" id="input6" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.houseNumberAffix">
                 </div>
                 <label class="col-sm-4 control-label">Mahnstufe</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control input-sm" id="input7">
+                  <input type="text" class="form-control input-sm" id="input7" ng-disabled="true">
                 </div>
                 <label class="col-sm-3 control-label">TZ Mahnstufe</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control input-sm" id="input8">
+                  <input type="text" class="form-control input-sm" id="input8" ng-disabled="true">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-sm-2">
-                  <input type="text" class="form-control input-sm" id="input9">
+                  <input type="text" class="form-control input-sm" id="input9" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.zip">
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control input-sm" id="input10">
+                  <input type="text" class="form-control input-sm" id="input10" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.city">
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control input-sm" id="input11">
+                  <input type="text" class="form-control input-sm" id="input11" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.land">
                 </div>
                 <label class="col-sm-4 control-label">Auftragsbescgrakung</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control input-sm" id="input12">
+                  <input type="text" class="form-control input-sm" id="input12" ng-disabled="true">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-sm-8">
-                  <input type="text" class="form-control input-sm" id="input13">
+                  <input type="text" class="form-control input-sm" id="input13" ng-disabled="true" ng-model="Custemersearch.data.masterAddress.email">
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control input-sm" id="input14">
+                  <input type="text" class="form-control input-sm" id="input14" ng-disabled="true" ng-model="Custemersearch.data.birthday">
                 </div>
                 <label class="col-sm-4 control-label">Mitarbeiterkenzeichen</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control input-sm" id="input15">
+                  <input type="text" class="form-control input-sm" id="input15" ng-disabled="true">
                 </div>
               </div>
 
             </form>
           </div>
-          <div role="tabpanel" class="tab-pane" id="tab2">Tab 2</div>
+          <div role="tabpanel" class="tab-pane" id="tab2">
+            <div id="myGrid" ui-grid="gridOptionsAdr" ui-grid-selection class="gridTable" ></div>
+          </div>
           <div role="tabpanel" class="tab-pane" id="tab3">Tab 3</div>
           <div role="tabpanel" class="tab-pane" id="tab4">Tab 4</div>
         </div>
+        -->
       </div>
       <div class="panel-footer">
         <!-- Panel footer -->
@@ -124,16 +204,19 @@
             <label for="kundennummer-field" class="control-label">Kundennummer</label>
             <input type="text" class="form-control input-sm" id="kundennummer-field" ng-model="customer.Id"/>
           </div>
-          <button type="submit" class="btn btn-default btn-sm" ng-hide="Custemersearch.data">
+          <button type="submit" class="btn btn-default btn-sm" ng-show="!Custemersearch.customerSelected">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Kunde suchen
           </button>
-          <button class="btn btn-default btn-sm" ng-show="Custemersearch.data" >
+          <button type="button" class="btn btn-default btn-sm" ng-show="Custemersearch.customerSelected" ng-click="resetFoundCustomer()">
             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Zuruckserzen
           </button>
-          <button type="button" class="btn btn-default btn-sm" ng-click="Custemersearch.creatNewCustomer(array={})">
+          <button ng-show="!Custemersearch.customerSelected" type="button" class="btn btn-default btn-sm" ng-click="Custemersearch.creatNewCustomer(array={})">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kunde anlegen
           </button>
-          <button type="button" class="btn btn-default btn-sm  pull-right disabled">
+          <button ng-show="Custemersearch.customerSelected" type="button" class="btn btn-default btn-sm" ng-click="Custemersearch.updateCustomer(Custemersearch.data)">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Update Customer
+          </button>
+          <button type="button" class="btn btn-default btn-sm  pull-right" ng-disabled="!Custemersearch.customerSelected">
             <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bankdaten bearbeiten
           </button>
         </form>
@@ -151,7 +234,7 @@
         <button type="button" class="btn btn-default btn-sm disabled">
           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Zurucksetzen
         </button>
-        <button type="button" class="btn btn-default btn-sm pull-right disabled">
+        <button type="button" ng-click="Custemersearch.addresses()" class="btn btn-default btn-sm pull-right" ng-disabled="">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Lieferadresse
         </button>
       </div>

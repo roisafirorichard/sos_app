@@ -9,8 +9,6 @@
 ###
 angular.module 'sosAppApp'
   .factory 'CustomerService', ($http, $location, $translate, config)->
-	# Service logic
-	# ...
 	locale = $translate.use()
 	
 	CustomerService = 
@@ -25,6 +23,7 @@ angular.module 'sosAppApp'
 			)
 			# Return the promise to the controller
 			promise
+
 		advancedCustomerSearch: (array) ->
 			data = 
 				"displayId" : null
@@ -54,7 +53,6 @@ angular.module 'sosAppApp'
 			promise
 
 		addNewCustomer: (array) ->
-			console.log "array", array
 			data = 
 				'birthday': array.dateofbirth
 				'firstname': array.vorname
@@ -87,12 +85,97 @@ angular.module 'sosAppApp'
 					'countryId': array.land
 					'salutationId': array.anrede
 
-			console.log data
 			headers = 
 				'systemId': config.systemId
 				'userId': config.userId
 
 			promise = $http.post(config.apiUrl + '/SOS-1/1/'+locale+'/customer', data, {headers: headers}).then((response) ->
+				response.data
+			)
+			# Return the promise to the controller
+			promise
+
+		updateCustomer: (array, customerId) ->
+			data = 
+				'birthday': array.dateofbirth
+				'firstname': array.vorname
+				'lastname': array.name
+				'sendPromotesFlg': array.werbung
+				'phoneContactId': array.telefonkontakt
+				'paymentId': array.bevorzugle
+				'titleId': array.title
+				'salutationId': array.anrede
+				'masterAddress':
+					'zip': '81549'
+					'city': 'Stadelheim'
+					'street': array.strase
+					'houseNumber': array.hnr
+					'houseNumberAffix': null
+					'firstname': array.vorname
+					'lastname': array.name
+					'nameAffix': null
+					'companyAffix': null
+					'email': array.email
+					'mobileAreaCode': array.telefonmobilAreaCode
+					'mobileNumber': array.telefonmobil
+					'privateAreaCode': array.telefonprvAreaCode
+					'privateNumber': array.telefonprv
+					'businessAreaCode': array.telefondienstAreaCode
+					'businessNumber': array.telefondienst
+					'faxAreaCode': array.faxAreaCode
+					'faxNumber': array.fax
+					'titleId': array.title
+					'countryId': array.land
+					'salutationId': array.anrede
+
+			headers = 
+				'systemId': config.systemId
+				'userId': config.userId
+
+			promise = $http.put(config.apiUrl + '/SOS-1/1/'+locale+'/customer/'+customerId, data, {headers: headers}).then((response) ->
+				response.data
+			)
+			# Return the promise to the controller
+			promise
+
+		validateCustomer: (array) ->
+			data = 
+				'birthday': array.dateofbirth
+				'firstname': array.vorname
+				'lastname': array.name
+				'sendPromotesFlg': array.werbung
+				'phoneContactId': array.telefonkontakt
+				'paymentId': array.bevorzugle
+				'titleId': array.title
+				'salutationId': array.anrede
+				'masterAddress':
+					'zip': '81549'
+					'city': 'Stadelheim'
+					'street': array.strase
+					'houseNumber': array.hnr
+					'houseNumberAffix': null
+					'firstname': array.vorname
+					'lastname': array.name
+					'nameAffix': null
+					'companyAffix': null
+					'email': array.email
+					'mobileAreaCode': array.telefonmobilAreaCode
+					'mobileNumber': array.telefonmobil
+					'privateAreaCode': array.telefonprvAreaCode
+					'privateNumber': array.telefonprv
+					'businessAreaCode': array.telefondienstAreaCode
+					'businessNumber': array.telefondienst
+					'faxAreaCode': array.faxAreaCode
+					'faxNumber': array.fax
+					'titleId': array.title
+					'countryId': array.land
+					'salutationId': array.anrede
+
+			headers = 
+				'systemId': config.systemId
+				'userId': config.userId
+
+			promise = $http.post(config.apiUrl + '/SOS-1/1/'+locale+'/customer/validate', data, {headers: headers}).then((response) ->
 				response.data
 			)
 			# Return the promise to the controller
